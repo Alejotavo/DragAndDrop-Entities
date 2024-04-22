@@ -6,21 +6,40 @@ return new Promise((resolve) => {
         // Simulamos datos obtenidos del servicio
         const Data = [
         { id: 1, 
-          name: 'Diego Ferreira',
-          puesto: 'CEO' 
-        },
-        { id: 2, 
-            name: 'Fede del Ponte',
+            parentId: null,
+            name: 'Diego Ferreira',
             puesto: 'CEO' 
         },
+        { id: 2, 
+            parentId: 1,
+            name: 'Marco Aurelio',
+            puesto: 'Filosofo' 
+        },
         { id: 3, 
-        name: 'La Mona Jimenez',
-        puesto: 'Cantante' 
+            parentId: null,
+            name: 'La Mona Jimenez',
+            puesto: 'Cantante' 
         },
         { id: 4, 
+            parentId: null,
             name: 'Ricky Maravilla',
             puesto: 'Cantante' 
-            },
+        },
+        { id: 5, 
+            parentId: 4,
+            name: 'Silvio Rodriguez',
+            puesto: 'Cantante' 
+        },
+        { id: 6, 
+            parentId: 4,
+            name: 'Pepe Medina',
+            puesto: 'Escritor' 
+        },
+        { id: 5, 
+            parentId: 4,
+            name: 'Manolo Alonzo',
+            puesto: 'Surfista' 
+        },
         ];
         resolve(Data);
     }, 1000);
