@@ -31,7 +31,7 @@ return new Promise((resolve) => {
             puesto: 'Developer' 
         },
         { id: 6, 
-            parentId: 8,
+            parentId: 7,
             name: 'Lucas Mangano',
             puesto: 'Developer' 
         },

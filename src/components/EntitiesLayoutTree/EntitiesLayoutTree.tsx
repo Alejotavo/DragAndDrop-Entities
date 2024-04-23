@@ -1,4 +1,3 @@
-import React from "react";
 import "./EntitiesLayoutTree.scss";
 
 interface Data {
@@ -9,18 +8,18 @@ interface Data {
 }
 
 function EntitiesLayoutTree(props: { data: Data[] }) {
-  const parentContainer = {
-    backgroundColor: "green",
-    padding: "20px",
-    margin: "20px",
-  };
-  const childContainer = {
-    backgroundColor: "yellow",
-    padding: "20px",
-    color: "#000",
-  };
+  const renderEntity = (entity: Data, level: number) => {
+    const parentContainer = {
+      backgroundColor: level === 0 ? "green" : "yellow", // Estilo diferente para los nodos principales
+      padding: "20px",
+      margin: "20px",
+    };
+    const childContainer = {
+      backgroundColor: level % 2 === 0 ? "lightblue" : "lightpink", // Estilo alternativo para los niveles pares e impares
+      padding: "20px",
+      color: "#000",
+    };
 
-  const renderEntity = (entity: Data) => {
     // Filtrar los hijos de la entidad actual
     const children = props.data.filter((child) => child.parentId === entity.id);
 
@@ -31,7 +30,7 @@ function EntitiesLayoutTree(props: { data: Data[] }) {
         <p>Puesto: {entity.puesto}</p>
         {children.length > 0 && (
           <ul style={childContainer}>
-            {children.map((child) => renderEntity(child))}
+            {children.map((child) => renderEntity(child, level + 1))}
           </ul>
         )}
       </div>
@@ -43,7 +42,7 @@ function EntitiesLayoutTree(props: { data: Data[] }) {
     (entity) => entity.parentId === null
   );
 
-  return <>{parentEntities.map((entity) => renderEntity(entity))}</>;
+  return <>{parentEntities.map((entity) => renderEntity(entity, 0))}</>;
 }
 
 export default EntitiesLayoutTree;
