@@ -12,34 +12,39 @@ return new Promise((resolve) => {
         },
         { id: 2, 
             parentId: 1,
-            name: 'Marco Aurelio',
-            puesto: 'Filosofo' 
+            name: 'Joaquin Diaz',
+            puesto: 'Developer' 
         },
         { id: 3, 
             parentId: null,
-            name: 'La Mona Jimenez',
-            puesto: 'Cantante' 
+            name: 'Juan Arrivillaga',
+            puesto: 'Project Manager' 
         },
         { id: 4, 
             parentId: null,
-            name: 'Ricky Maravilla',
-            puesto: 'Cantante' 
+            name: 'Federico Del Ponte',
+            puesto: 'CEO' 
         },
         { id: 5, 
             parentId: 4,
-            name: 'Silvio Rodriguez',
-            puesto: 'Cantante' 
+            name: 'Alejo Francomano',
+            puesto: 'Developer' 
         },
         { id: 6, 
-            parentId: 4,
-            name: 'Pepe Medina',
-            puesto: 'Escritor' 
+            parentId: 8,
+            name: 'Lucas Mangano',
+            puesto: 'Developer' 
         },
-        { id: 5, 
+        { id: 7, 
             parentId: 4,
-            name: 'Manolo Alonzo',
-            puesto: 'Surfista' 
+            name: 'Jorge Viale',
+            puesto: 'Developer' 
         },
+        { id: 8, 
+            parentId: 7,
+            name: 'Marcos Basualdo',
+            puesto: 'Developer' 
+        }
         ];
         resolve(Data);
     }, 1000);

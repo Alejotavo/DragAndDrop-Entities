@@ -1,8 +1,11 @@
+import React from "react";
+import "./EntitiesLayoutTree.scss";
+
 interface Data {
   id: number;
   name: string;
   puesto: string;
-  parentId: number;
+  parentId: number | null; // Cambiado a permitir null
 }
 
 function EntitiesLayoutTree(props: { data: Data[] }) {
@@ -17,37 +20,30 @@ function EntitiesLayoutTree(props: { data: Data[] }) {
     color: "#000",
   };
 
-  const renderEntities = (entities: Data[]) => {
-    // Filtrar las entidades que tienen parentId null
-    const parentEntities = entities.filter(
-      (entity) => entity.parentId === null
+  const renderEntity = (entity: Data) => {
+    // Filtrar los hijos de la entidad actual
+    const children = props.data.filter((child) => child.parentId === entity.id);
+
+    return (
+      <div style={parentContainer} key={entity.id}>
+        <p>ID: {entity.id}</p>
+        <p>Name: {entity.name}</p>
+        <p>Puesto: {entity.puesto}</p>
+        {children.length > 0 && (
+          <ul style={childContainer}>
+            {children.map((child) => renderEntity(child))}
+          </ul>
+        )}
+      </div>
     );
-
-    return parentEntities.map((entity) => {
-      // Filtrar los hijos de la entidad actual
-      const children = props.data.filter(
-        (child) => child.parentId === entity.id
-      );
-
-      // Renderizar la entidad y sus hijos si los tiene
-      return (
-        <div style={parentContainer} key={entity.id}>
-          <p>ID: {entity.id}</p>
-          <p>Name: {entity.name}</p>
-          <p>Puesto: {entity.puesto}</p>
-          {children.length > 0 && (
-            <ul style={childContainer}>
-              {children.map((child) => (
-                <li key={child.id}>{child.name}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-      );
-    });
   };
 
-  return <>{renderEntities(props.data)}</>;
+  // Filtrar las entidades que tienen parentId null para comenzar el renderizado
+  const parentEntities = props.data.filter(
+    (entity) => entity.parentId === null
+  );
+
+  return <>{parentEntities.map((entity) => renderEntity(entity))}</>;
 }
 
 export default EntitiesLayoutTree;

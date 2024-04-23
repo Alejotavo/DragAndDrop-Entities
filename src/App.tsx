@@ -18,9 +18,9 @@ function App() {
 
   console.log("data", data);
   return (
-    <>
+    <div style={{ display: "flex" }}>
       <EntitiesLayoutTree data={data} />
-    </>
+    </div>
   );
 }
 
