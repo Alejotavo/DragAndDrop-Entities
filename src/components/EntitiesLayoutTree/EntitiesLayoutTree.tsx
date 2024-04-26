@@ -20,6 +20,10 @@ function EntitiesLayoutTree(props: { data: Data[] }) {
       color: "#000",
     };
 
+    const dropWrapper = {
+      background: "red",
+    };
+
     // Filtrar los hijos de la entidad actual
     const children = props.data.filter((child) => child.parentId === entity.id);
 
@@ -33,6 +37,7 @@ function EntitiesLayoutTree(props: { data: Data[] }) {
             {children.map((child) => renderEntity(child, level + 1))}
           </ul>
         )}
+        <div style={dropWrapper}>Drop</div>
       </div>
     );
   };
