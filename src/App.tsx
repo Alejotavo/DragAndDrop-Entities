@@ -3,8 +3,15 @@ import EntitiesLayoutTree from "./components/EntitiesLayoutTree/EntitiesLayoutTr
 import { fetchData } from "../src/services/service";
 import { useEffect, useState } from "react";
 
+interface Data {
+  id: number;
+  name: string;
+  puesto: string;
+  parentId: number | null;
+}
+
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
     fetchData()
@@ -19,7 +26,7 @@ function App() {
   console.log("data", data);
   return (
     <div style={{ display: "flex" }}>
-      <EntitiesLayoutTree data={data} />
+      <EntitiesLayoutTree data={data} setData={setData} />
     </div>
   );
 }
